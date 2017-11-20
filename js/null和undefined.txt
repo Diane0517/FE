@@ -1,0 +1,19 @@
+1.相似性
+  将一个变量赋值null或者undefined看起来是没有什么区别的。而且在if语句中都是false。
+  undefined == false //true
+2.区别
+  最初的javascript里，null表示“无”的对象，在转化为数值的时候，变成0.即 Number(null) = 0;
+  undefined表示“无”原始值，在转化为数值的时候，变成NaN.即：Number(undefined) = NaN,5+undefined = NaN
+  就现在用法而言，null表示“没有对象”，相当于不应该有值。
+	（1）用来表示参数，表示参数不是对象。
+	（2）作为原型链的终点
+  undefined表示“缺少值”，相当于本应该有值的现在还没有定义。
+	（1）用来表示变量只是声明，却没有定义。
+	（2）调用函数，函数中的参数没有提供，会显示undefined
+  	（3）对象的属性没有赋值时，属性值显示undefined 
+	（4）函数没有返回值时，显示undefined
+  例如：
+      var i ;console.log(i) //undefined
+      fun(t){console.log(t)};fun()//undefined
+      var p = new Object();p.say()//undefined
+      var p = fun(）;p()//undefined
