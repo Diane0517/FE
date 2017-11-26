@@ -1,0 +1,54 @@
+排序的常见写法
+
+（1）冒泡排序
+  
+    原理就是，比较相邻的两个元素，如果前一个比后一个大，则交换位置。
+    
+    第一轮循环，最后一个就是最大的。
+    
+    由于最后一个是最大的，所以不用做比较了。因而循环次数是arr.length-1.
+    
+        function sort(arr){
+          for(var i = 0;i<arr.length-1;i++){
+            for(var j = 0;j<arr.length-i-1;j++){
+              if(arr[j] >arr[j+1]){
+                var tmp = arr[j]
+                arr[j] = arr[j+1]
+                arr[j+1] = tmp
+              }
+            }
+          }
+          return arr
+        }
+    
+  ( 2 )二分法
+  
+      原理就是，将数组从中间分开，成为2部分。选取一个值(middle)，2部分同时进行比较。大的放右边，小的放左边，然后继续进行二分，直到找到所在位置
+      
+          < 1 >递归方法
+                
+                function binarySearch(arr){
+                  var middle = arr.slice(Math.floor(arr.length/2),1)
+                      leftArr = []
+                      rightArr = []
+                  if(arr.length<=1){
+                    return arr
+                  }
+                  for(var i = 0;i<arr.length;i++){
+                    if(arr[i]<middle){
+                      leftArr.push(arr[i])
+                    }else{
+                      rightArr.push(arr[i])
+                    }  
+                   }
+                   return binarySearch(leftArr).contact(middle,binarySearch(rightArr))
+                  }
+                  
+         这个方法还有待研究......
+                     
+          
+          
+          
+          
+          < 2 >非递归方法
+    
