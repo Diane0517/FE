@@ -35,3 +35,15 @@ function calDiffMonths(StartDate, EndDate) {
   }
   return Months;
 }
+
+
+在实际应用中，这个方法计算会有偏差．例如：
+var a = moment([201８, 0, 23]);
+var b = moment([2018, 2, 5]);
+var diff = b.diff(a, 'months');　//输出的diff是１，这样计算是不对的．我自己改进的方法，如下所示：
+
+
+var a = moment(this.props.createTime*1000);
+var b = moment();
+var diff = b.month()-a.month() ;
+这样刚好能计算出月份的差值，显示上是正确的．
