@@ -43,7 +43,22 @@ var b = moment([2018, 2, 5]);
 var diff = b.diff(a, 'months');　//输出的diff是１，这样计算是不对的．我自己改进的方法，如下所示：
 
 
+
+
 var a = moment(this.props.createTime*1000);
-var b = moment();
-var diff = b.month()-a.month() ;
+      var b = moment();
+      var diff = Math.abs(b.month()-a.month()) ;
+      var diff_year = b.diff(a,'year');//跨年份的会有时间差，需要计入月份的计算,按年分差值＊１２，
+                                      //可计算出月份差值，然后吧两个差值加起来，就是总共的月份差，这样才是正确的计算结果
+      if(diff_year >0){
+        diff = diff + 12*diff_year; 
+      }
+      var diffMonths = Array
+          .apply([], new Array(diff + 1))
+          .map(function(item, index) {
+            return a.clone().add(index, 'month').format('YYYY-MM');
+          });
+      var options = diffMonths.map(month =>{
+        return <option value={month} selected={month == b.format('YYYY-MM')?true:false}>{month}</option>
+      });
 这样刚好能计算出月份的差值，显示上是正确的．
